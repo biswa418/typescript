@@ -175,3 +175,8 @@ let log2: any = null;
 log('a');
 // log2('a'); //error cause of the null --> runtime error tho
 
+
+// TYPE ALIAS
+type char = string;
+let ch: char;
+
