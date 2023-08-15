@@ -116,4 +116,62 @@ weightCheck(10);
 weightCheck('10');
 
 //intersection types
+type Draggable = {
+    drag: () => void
+}
+
+type Resizable = {
+    resize: () => void
+}
+
+type UIElement = Draggable & Resizable; // create the new type from intersection before -->  so it's both draggable and resizable --> both methods will be avaialable inside the function
+
+let box1: UIElement = {
+    drag: () => { },
+    resize: () => { }
+}
+
+// literal types
+// to limit the possible values
+type Quantity = 50 | 100;
+
+// let quantity: Quantity = 10; // gives error on compilation
+let quantity2: Quantity = 50; // fine
+
+
+//nullable types
+function sayHi(name: string | null | undefined): void {
+    if (name)
+        console.log('Hola ', name);
+    else
+        console.log('Hello');
+}
+
+sayHi(null);
+sayHi('Ram');
+
+// optional chaining
+type People = {
+    birthday: Date
+}
+
+function getCustomer(id: number): People | null | undefined {
+    return id === 0 ? null : { birthday: new Date() }
+}
+
+let customer = getCustomer(0);
+
+if (customer)
+    console.log(customer.birthday); // customer can be null --> compilation error
+console.log(customer?.birthday);
+
+// optional element check
+// customer?.[0]
+
+// optional call operator
+let log: any = (message: string) => console.log(message);
+let log2: any = null;
+
+log('a');
+// log2('a'); //error cause of the null --> runtime error tho
 
